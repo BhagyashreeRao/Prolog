@@ -1,8 +1,18 @@
 $( document ).ready(function() {
     $('#profile').hide();
     $('#posts').hide();
+    $('#mainContent').hide();
 
-    var myFacebookToken = 'EAACEdEose0cBAOOtBBORSiMKUV7saYb7xgJFMWIYzgRuBwxcVBgQ3e0LqaLfY6BEauUnwWKSt4lFM2qKjQoaS20Gv9h1mPgKnDDlZA9Aet2sDp6YETtvX47DrWCjjN7rKeXSHzyoXqK7dvlesolCjwb3cQDEdXbBHIsVDK7XE8nfaEz9D8UFQL29iwk0ZD';
+    var myFacebookToken = prompt("Enter your access token");
+    if (myFacebookToken != null) {
+         $("#mainContent").fadeIn("fast");
+    }
+    else 
+    {
+        alert("Access token not entered ");
+    }
+
+    console.log(myFacebookToken);
     var myEducationArr;
     var myFamilyArr;
     var myPostArr;
@@ -12,6 +22,7 @@ $( document ).ready(function() {
     function getFacebookInfo(){
             $.ajax('https://graph.facebook.com/me?fields=id,name,education,work,hometown,location,birthday,family,email,relationship_status,gender,first_name,last_name,interested_in&&access_token='+myFacebookToken,{
             success : function(response){
+                    console.log(response);
                     $("#myEmail").text(response.email);
                     $("#myProfileId").html('<a target="blank" href="https://facebook.com/'+response.id+'">https://facebook.com/'+response.id+'</a>');
                     $("#myName").text(response.first_name);
