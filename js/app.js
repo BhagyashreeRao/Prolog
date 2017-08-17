@@ -5,7 +5,7 @@ $( document ).ready(function() {
 
     var myFacebookToken = prompt("Enter your access token");
     if (myFacebookToken != null) {
-         $("#mainContent").fadeIn("fast");
+         $("#mainContent").show("fast");
     }
     else 
     {
